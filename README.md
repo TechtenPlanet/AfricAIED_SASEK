@@ -38,15 +38,21 @@ A small tkinter application students can use to practice for the riddles section
 
 ## Running the Application
     
-0. **Before You Start**
+### Before You Start
 
-    1. Download the AI Voice Models folder onto your pc from [here](https://drive.google.com/drive/folders/1fr5uPj9NOVq8L2gws_DQCLvRRvmUhlY2)
 
-    2. Upload the extracted version of the zip that will be downloaded onto your pc into your google drive
-     !["Google Drive"](/screenshots/google_drive.png)
-     
-    3. Create and Ngrok account and get an API key. Ngrok will help you connect to the backend of this program. 
-       
+1. Download the "AI Voice Models" folder onto your pc from [here](https://drive.google.com/drive/folders/1fr5uPj9NOVq8L2gws_DQCLvRRvmUhlY2)
+
+
+2. Upload the extracted version of the zip that will be downloaded onto your pc into your google drive
+
+ !["Google Drive"](/screenshots/google_drive.png)
+
+
+
+3. Create and Ngrok account and get an API key. Ngrok will help you connect to the backend of this program. 
+
+
     
 1. **Run the Server Notebook:**
 
@@ -62,6 +68,8 @@ A small tkinter application students can use to practice for the riddles section
 
        clear_output()
        ```
+
+    Make sure to move quizmistress.pth into the content folder in google colab.
 
     Open the `[Release] Riddle Prep App Server.ipynb` file, preferably in Colab if you don't have a GPU on your, follow the instructions to start the server, and copy the `ngrok` URL.
 
