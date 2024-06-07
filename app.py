@@ -7,7 +7,7 @@ from question_service import QuestionService
 from utils import synthesize_audio, autoplay_audio, make_recording, transcribe_audio
 
 question_service = QuestionService()
-BASE_URL = "https://a661-34-148-55-204.ngrok-free.app"
+BASE_URL = "https://6942-35-204-11-163.ngrok-free.app"
 
 class App:
 
@@ -15,26 +15,40 @@ class App:
         self.root = root
         self.is_running = threading.Event()
         self.is_attempting = threading.Event()
+        
+        self.current_input = "" # Set current input
+        
+        self.top_frame = ctk.CTkFrame(master=self.root,bg_color="#eee",width=800,height=800)
+        self.top_frame.pack(padx=10,pady=40)
+        
+        self.riddle_label = ctk.CTkLabel(master=self.top_frame, text="Riddle: 0/0")
+        self.riddle_label.pack(padx=200,pady=30)
 
+        self.score_label = ctk.CTkLabel(master=self.top_frame, text="Score: 0")
+        self.score_label.pack(pady=30)
+        
+        self.user_input = ctk.CTkLabel(master=self.top_frame,text="Your input is: ")
+        self.user_input.pack(pady=20)
+        
+        self.user_input_0 = ctk.CTkLabel(master=self.top_frame,text="")
+        self.user_input_0.pack(pady=5)
+        
         self.start_button = ctk.CTkButton(master=root, text="Start Assessment", command=self.start_assessment)
         self.start_button.pack(pady=20)
 
         self.answer_button = ctk.CTkButton(master=root, text="Make Attempt", command=self.make_attempt)
         self.answer_button.pack(pady=20)
 
-        self.spinner_label = ctk.CTkLabel(master=root, text="Assessment Ongoing...", text_color="green")
-        self.spinner_label.pack(pady=20)
+        self.spinner_label = ctk.CTkLabel(master=self.top_frame, text="Assessment Ongoing...", text_color="green")
+        self.spinner_label.pack(pady=40)
         self.spinner_label.pack_forget()  # Hide the spinner initially
+        
 
-        self.processing_answer_label = ctk.CTkLabel(master=root, text="", text_color="blue")
+        self.processing_answer_label = ctk.CTkLabel(master=self.top_frame, text="", text_color="blue")
         self.processing_answer_label.pack(pady=20)
         self.processing_answer_label.pack_forget()
 
-        self.riddle_label = ctk.CTkLabel(master=root, text="Riddle: 0/0")
-        self.riddle_label.pack(pady=10)
 
-        self.score_label = ctk.CTkLabel(master=root, text="Score: 0")
-        self.score_label.pack(pady=10)
 
         self.worker_thread = None
         self.current_riddle_id = 1
@@ -116,7 +130,11 @@ class App:
         autoplay_audio(answer_audio_path)
         
         self.processing_answer_label.configure(text="Processing Your Answer...")
+        ## User Answer
         user_answer = transcribe_audio(audio_path=answer_audio_path, base_url=BASE_URL)
+        self.user_input_0.configure(text=user_answer)
+        self.current_input = user_answer
+        print(user_answer)
         
         riddle = question_service.get_next_riddle(self.current_riddle_id)
         groundtruths = riddle["answers"]
