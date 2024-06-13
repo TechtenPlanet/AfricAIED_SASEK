@@ -1,0 +1,299 @@
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: $\sin x=\sin 37^{\circ}$
+/INST $x=143^{\circ}$
+$\left[\sin x=\sin (180-37), x=180-37=143^{\circ}\right]$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: $\cos x=-\cos 65^{\circ}$
+/INST $x=115^{\circ}$
+$\left[-\cos 65=\cos (180-65), \cos x=\cos (180-65), x=180-65, x=115^{\circ}\right]$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: $\tan x=-\tan 52^{\circ}$
+/INST $x=128^{\circ}$
+$\left[\tan x=\tan (180-52), x=180-52=128^{\circ}\right]$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: $x+y=2, x-y=4,2 x-y=4$
+/INST $(3,1),(2,0),(0,-4)$
+$[x+y=2, x-y=4,2 x=6, x=3, y=-1,(3,-1), x+y=2,2 x-y=4,3 x=6, x=2, y$ $=0,(2,0), x-y=4,2 x-y=4, x=0, y=-4,(0,-4)]$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: $y=x, y=-x+2, y=2 x-4 \quad$
+/INST $(\mathbf{1}, \mathbf{1}),(\mathbf{4}, \mathbf{4}),(2,0)$
+$[y=x, y=-x+2,2 y=2, y=1, x=1,(1,1) ; y=x, y=2 x-4, x-4=0, x=4, y=4$, $(4,4) ; y=-x+2, y=2 x-4,-x+2=2 x-4,3 x=6, x=2, y=0,(2,0)]$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: $x+y=6,2 x+y=6, y=2 x \quad$
+/INST $(2,4),(3 / 2,3),(0,6)$ $[x+y=6$ and $y=2 x, 3 x=6, x=2, y=4,(2,4), 2 x+y=6$ and $y=2 x$, $4 x=6, x=3 / 2, y=3,(3 / 2,3), x+y=6$ and $2 x+y=6, x=0, y=6,(0,6)]$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: $f(x)=a x^{3}+b x^{2}+x-4$ is exactly divisible by $(x-1)$ and $(x+1)$.
+/INST $a=-1, b=4$
+$[a+b+1-4=0, a+b=3,-a+b-1-4=0,-a+b=5,2 b=8, b=4, a=-1]$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: $f(x)=x^{3}+a x^{2}+b x-a$ has $(x-1)$ and $(x+2)$ as factors.
+/INST $a=2, b=-1$
+$[1+a+b-a=0, b=-1,-8+4 a+2-a=0,3 a-6=0, a=2]$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: $f(x)=2 x^{3}+a x^{2}+b x-3$ is divisible by $(x-1)$ and $(x+1)$.
+/INST $a=3, b=-2$
+$[2+a+b-3=0, a+b=1,-2+a-b-3=0, a-b=5,2 a=6, a=3, b=-2]$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Obligatory exchange is a type osmotic exchange that take place between a fish and its environment which is usually in response to physical factors over which the fish has little or no physiological control. Mention one of the four main factors that affect obligatory exchanges
+/INST Gradient between the Extracellular Compartment and the Environment
+The greater the ionic difference between the body fluid and external medium, the greater the tendency for net diffusion to low concentrations. Thus, a bony fish in a sea water is affected by the problem of losing water into the hypertonic sea water.
+Surface/Volume Ratio
+Generally the animal with small body size desiccates (or hydrates) more rapidly than a larger animal of the same shape.
+Permeability of the Gills
+Fish gills are necessarily permeable to water and solutes as they are the main site of exchange of oxygen and carbon dioxide between the blood and the water. Active transport of salts also takes place in the gills.
+Feeding
+Fishes take water and solute along with the feeding. A gill takes high quantity of salt than water at the time of feeding on seashore invertebrates, these fishes, therefore, must have some special device to excrete excess of salt. However, a freshwater fish ingests large amount of water than salt and thus needs special means of salt conservation..
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The functions include cytokinesis, amoeboid movement, cell motility, changes in cell shape, endocytosis and exocytosis, cell contractility, and mechanical stability.
+/INST Microfilaments.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: They are the most diverse group of cytoskeletal elements. Their function is purely structural. They bear tension, thus maintaining the shape of the cell, and anchor the nucleus and other organelles in place. They have no role in cell movement
+/INST Intermediate filaments.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: They are small hollow tubes. They are the widest components of the cytoskeleton. They help the cell resist compression, provide a track along which vesicles move through the cell, and pull replicated chromosomes to opposite ends of a dividing cell. They are the structural elements of flagella, cilia, and centrioles
+/INST Microtubules.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: How does blood in the renal vein differ from that in the renal artery in terms of oxygen, carbon dioxide and urea contents?
+/INST Blood in the renal vein will have less oxygen and more carbon dioxide (as a result of the kidney's respiration) and less urea, than blood in the renal artery..
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: What happens in the kidney tubules when the concentration of solutes in the blood rises above a certain level?
+/INST If the concentration of solutes in the blood rises, more water is reabsorbed in the kidney tubules. (This helps to reduce the concentration of the blood.).
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Is the human liver a homeostatic organ? Explain your answer.
+/INST Yes. It regulates the concentrations of glucose and amino acids.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The magnetic susceptibility of a paramagnetic substance is $2.10 \times 10^{-5}$ at $47^{\circ} \mathrm{C}$. Find the magnetic susceptibility of the substance at $27^{\circ} \mathrm{C}$.
+/INST $2.24 \times 10^{-5}$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Find the magnetic susceptibility at $67^{\circ} \mathrm{C}$ of the paramagnetic substance whose magnetic susceptibility is $2.10 \times 10^{-5}$ at $47^{\circ} \mathrm{C}$.
+/INST $1.98 \times 10^{-5}$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The magnetic susceptibility of another paramagnetic substance is $2.60 \times 10^{-4}$ at $17^{\circ} \mathrm{C}$. Find the magnetic susceptibility of the substance at $87^{\circ} \mathrm{C}$.
+/INST $2.09 \times 10^{-4}$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Estimate the surface gravity of the object.
+/INST $0.279 \mathrm{~ms}^{-2}$
+(Accept $0.28 \mathrm{~ms}^{-2}$ ).
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Estimate kinetic energy of the object. Take the mass of the sun as $2.0 \times 10^{30} \mathrm{~kg}$.
+/INST $1.5 \times 10^{29} \mathrm{~J}$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Estimate the escape velocity from a point $29 \mathrm{~km}$ above the surface of the object.}
+/INST $500 \mathrm{~ms}^{-1}$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: A stopped organ pipe has a fundamental frequency of $210 \mathrm{~Hz}$ on a day the speed of sound in air is $350 \mathrm{~m} \mathrm{~s}^{-1}$. Find the length of the pipe.
+/INST $0.417 \mathrm{~m}$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Another stopped organ pipe has a fundamental frequency of $280 \mathrm{~Hz}$ on the same day the speed of sound in air is $350 \mathrm{~ms}^{-1}$. Find the length of the pipe.
+/INST $0.313 \mathrm{~m}$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Find the fundamental frequency of a stopped organ pipe of length $0.490 \mathrm{~m}$ on a day the speed of sound is $345 \mathrm{~ms}^{-1}$.
+/INST $176 \mathrm{~Hz}$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: In the Periodic Table, sodium is to phosphorus as potassium is to
+/INST Arsenic.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: In the Periodic Table, titanium is to chromium as iron is to
+/INST Nickel.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: In the Periodic Table, lithium is to magnesium as boron is to
+/INST Silicon.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Calculate the percent magnesium by mass in ethyl magnesium bromide.
+$\mathrm{Br}=80.0 ; \mathrm{Mg}=24.0 ; \mathrm{C}=12.0 ; \mathrm{H}=1.00$.
+/INST $\mathrm{C}_{2} \mathrm{H}_{5} \mathrm{MgBr}=29.0+24.0+80.0=133$
+$\% \mathrm{Mg}=(24.0 / 133) * 100=18.0 \%$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: When magnesium chloride is recrystallised at room temperature a hexahydrate is formed. Calculate percent magnesium by mass in this hydrated salt.
+$\mathrm{Cl}=35.5 ; \mathrm{Mg}=24.0 ; \mathrm{O}=16.0 ; \mathrm{H}=1.00$.
+/INST $\mathrm{MgCl}_{2} \cdot 6 \mathrm{H}_{2} \mathrm{O}=24.0+71.0+6^{*} 18.0=203$.
+$\% \mathrm{Mg} \quad=(24.0 / 203) * 100=11.8$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Find the percent tetraoxophosphate(V) or simply phosphate by mass in the salt magnesium ammonium tetraoxophosphate(V) hexahydrate. $\quad \mathrm{P}=$ 31.0; $\mathrm{Mg}=24.0 ; \mathrm{O}=16.0 \mathrm{~N}=14.0 ; \mathrm{H}=1.00$.
+/INST $\mathrm{MgNH}_{4} \mathrm{PO}_{4} \cdot 6 \mathrm{H}_{2} \mathrm{O}$
+$24.0+18.0+31.0+64.0+6 * 18.0=245$
+$\% \mathrm{PO}_{4}{ }^{3-} \quad=(95.0 / 245)^{*} 100=38.8$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: What is the percentage by mass of oxygen in the earth's crust?
+/INST $47.0 \% \quad$ (Accept \pm 1 ).
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: What is the percentage by volume of nitrogen in the earth's atmosphere?
+/INST $78.1 \% \quad$ (Accept \pm 1 ).
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: What is the percentage by volume of argon in the earth's atmosphere?
+/INST $0.93 \% \quad$ (Accept \pm 0.05 ).
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: How are photosynthesis and respiration related to each other?
+/INST The end product of Photosynthesis is glucose that is used in cellular respiration to make ATP. The glucose is then turned back into carbon dioxide, which is used in photosynthesis. While water is broken down to form oxygen during photosynthesis, in cellular respiration oxygen is combined with hydrogen to form water..
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The concentration of the tissue fluid, which bathes all cells in the body, is kept more or less constant. Why is this important?
+/INST If the tissue fluid became more dilute, the cells would absorb water by osmosis and swell up. If the tissue fluid became more concentrated, the cells would lose water by osmosis, shrink and become dehydrated, possibly to a point where metabolism was no longer possible..
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: What is the principle underlying the use of cyanobacteria in agricultural fields for crop improvement?
+/INST Many species of cyanobacteria can carry out nitrogen fixation in soil. Hence, they are used in agricultural fields for crop improvement..
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Under a translation, the point $(2,5)$ maps into the point $(3,2)$. Find the image of the point $(-2,3)$ under the same translation.
+/INST $\mathbf{( - 1 , 0})$
+$[u=(3,2)-(2,5)=(1,-3),(-2,3)+(1,-3)=(-1,0)]$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: A binary operation is defined on the set of real numbers excluding -1 by $a * b=a+b+a b$. Find the identity e.
+/INST $e=0$
+$[a * e=a, a+e+a e=a, e(1+a)=0, e=0$ since $a \neq-1]$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: State the converse of the statement 'a regular polygon is equilateral' and determine if the converse is true or not.
+/INST 'An equilateral polygon is regular'. Converse is false..
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The decay constant of a radionuclide is $0.0125 \mathrm{~s}^{-1}$. Find the activity of a sample of the radionuclide $160 s$ after its activity attains $100 \mathrm{~Bq}$.
+/INST $13.5 \mathrm{~Bq}$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The magnitude of the magnetic flux density $1 \mathrm{~m}$ from a long straight current carrying wire is $2 n T$. Find the magnitude of the magnetic flux density $0.5 \mathrm{~m}$ from the wire.
+/INST $4 n T$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Arrange in increasing order of emission wavelength: Argon ion laser, carbon dioxide laser, helium-neon laser, nitrogen laser.
+/INST Nitrogen, argon ion, helium-neon, carbon dioxide.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: A chemical reaction produces 4.00 moles of oxygen gas. What volume will the oxygen gas occupy at a room temperature of $27.0^{\circ} \mathrm{C}$ if the pressure is maintained at $100 \mathrm{kPa}$ throughout the experiment? Molar volume of a gas at STP $=22.4 \mathrm{dm}^{3}$;
+Gas constant $\quad=8.31 \mathrm{JK}^{-1} \mathrm{~mol}^{-1}$
+/INST Use Charles' law: $\mathrm{V} \quad \alpha \mathrm{T} \quad$ at constant pressure and number of moles.
+$$
+\begin{aligned}
+& \mathrm{V}_{1}=4.00 * 22.4 ; \mathrm{T}_{1}=273 ; \mathrm{V}_{2}=? ; \\
+& \mathrm{T}_{2}=300 \\
+& \mathrm{~V}_{2}=\left(\mathrm{T}_{2} / \mathrm{T}_{1}\right) * \mathrm{~V}_{1}=(300 / 273) * 4.00 * 22.4=\mathbf{9 8 . 5 \mathbf { d m } ^ { 3 }}
+\end{aligned}
+$$
+OR Use the Ideal Gas Equation; $\quad \mathrm{V}=(\mathrm{n} * \mathrm{R} * \mathrm{~T}) / \mathrm{P}$
+$\mathrm{V}=(4.00 * 8.31 * 300) / 100=99.7 \mathbf{d m}^{3}$
+(Accept either of the two answers).
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: How many pi bonds are present in the $\mathrm{H}_{2} \mathrm{SO}_{4}$ molecule?
+/INST Two (2) pi bonds..
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Explain why even though both phenol and ethanol contain the $\mathrm{OH}$ group, phenol is an acidic, but ethanol is not.
+/INST Phenol is an acid because when it loses a proton the conjugate base, the phenoxide ion, is stabilised by resonance whereas the conjugate base of ethanol, the ethoxide ion, is not stabilised by resonance..
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The uncertainly has been determined to be $\pm 0.07 \mathrm{sec}$, determine the best value of the period the pendulum and report it together with its uncertainty.
+/INST Average period $=39.95+43.50+43.08+42.80+41.02 / 5$
+$=42.01 \mathrm{~s}$
+Best value for period
+$=42.01 / 20$
+$=2.101 \mathrm{~s}$
+$\mathrm{T}=21.101 \pm 0.007 \mathrm{~s}$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Use the experimental result to calculate $g$ and its uncertainty hence report the experimental result as value together with its uncertainty
+/INST period $\mathrm{T}=2 \pi \mathrm{Vl} / \mathrm{g}$
+$g=4 \pi^{2} l / T^{2}$
+$\mathrm{L}=1.095 \mathrm{M}+0.001 \mathrm{M}$
+$\mathrm{L}=1.100 \mathrm{~m}$
+$g=4 \pi^{2}(1.100) /(2.101)^{2}$
+$g=9.838 \mathrm{~ms}^{-2}$
+Relative uncertainty
+=uncertainty in $\mathrm{g} / \mathrm{g}$
+uncertainty in $g=0.068(9.838)$
+$=0.7 \mathrm{~ms}^{-2}$
+$g=9.8 \pm 0.7 \mathrm{~ms}^{-2}$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: 2-Methylphenol is an isomer of phenylmethanol.
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: 2-Methylphenol and phenylmethanol are position isomers.
+/INST F.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: 2-Methylphenol and phenylmethanol are functional group isomers.
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Both lithium and boron possess giant atomic structure
+/INST F.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Both sodium and graphite are good conductors of electricity because they have common structures
+/INST $\mathrm{F}$.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Pure elemental phosphorus and sulphur consist of atoms in their lattices.
+/INST F.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: A virtual image is formed by an apparent intersection of rays and cannot be received on a screen.
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: A plane mirror forms a real image of a virtual object.
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: A virtual image formed by an optical system cannot be seen by a human eye because a virtual image cannot be received on a screen.
+/INST F.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Magnetic saturation in a ferromagnetic material is accompanied by precipitation of excess magnetic domains.
+/INST F.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Magnetic saturation in a single ferromagnetic crystallite occurs when the whole crystallite is occupied by a single favorably aligned magnetic domain.
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Magnetic saturation cannot occur in paramagnetic materials.
+/INST F.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The ordered pair $(-1,2)$ satisfies the inequality $x+y<1$.
+/INST F.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The ordered pair $(2,-3)$ satisfies the inequality $2 x+y<1$
+/INST F.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The sum of the interior angles of a decagon is $1400^{\circ}$.
+/INST F.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The sum of the interior angles of a septagon is $900^{\circ}$.
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The sum of the interior angles of a duo-decagon is $1800^{\circ}$.
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Plants lose water (and turgor pressure) via transpiration through the stomata in the leaves and replenish it via negative pressure in the roots.
+/INST F.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: Positive pressure inside plant cells is contained by the cell wall, producing turgor pressure, which is responsible for maintaining the structure of leaves
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: DNA nucleotide differences between organisms indicate how closely organisms are.
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: DNA nucleotide differences between organisms indicate that evolution has occurred
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: DNA nucleotide differences between organisms explain why there are phenotypic differences
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The taller the plant, the taller the water column, and the more influential gravity potential becomes
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: The ordered pair $(3,-1)$ satisfies the inequality $x+y<3$
+/INST T.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: I could be regarded as a charge, real or imaginary.
+I am usually quantified in very familiar units.
+You cannot guess what or who I am from my synonyms because ordinarily they are not close in meaning .
+In Group I compounds I have a steady number of unity.
+My sum in a neutral compound is always zero.
+Who am I?
+/INST Oxidation state or Oxidation number.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: I am a particle.
+I am emitted in a particular nuclear decay process.
+I am a spin-0 charged particle.
+My name suggests I am the first of sorts.
+I am composed of two protons and two neutrons.
+Who am I?
+/INST Alpha particle.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: I am a natural aging biological process which occur in terrestrial, freshwater and marine ecosystems
+I am historically used in reference to the natural aging of lakes.
+Although I am commonly caused by human activities, I can also be a natural process, particularly in lakes
+My visible effect is often nuisance algal blooms that can cause substantial ecological degradation in water bodies and associated streams
+I am simply the production of organic matter in excess of what an ecosystem is normally adapted to processing.
+WHO AM I?
+/INST Eutrophication.
+
+<s>[INST] <<SYS>> System prompt <</SYS>> NSMQ Question: I am a 3-digit odd number.
+My third digit is a square.
+My second digit is a unique prime.
+The sum of my first two digits is my third digit.
+The sum of my digits is a dozen and a half.
+I am the first square greater than 700 .
+Who am I?
+/INST 729.
+
