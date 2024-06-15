@@ -11,7 +11,7 @@ def format_data_with_label(df):
     for index, row in df.iterrows():
         prompt = f"NSMQ Question: {row['Question']}"
         completion = row['Answer']
-        formatted_data.append({"prompt": prompt, "completion": completion})
+        formatted_data.append({"input": prompt, "output": completion})
     return formatted_data
 
 # Process all sheets and combine the data with the new label
@@ -22,7 +22,7 @@ for sheet in spreadsheet.sheet_names:
     all_data_with_label.extend(formatted_sheet_data_with_label)
 
 # Save the formatted data with label to a JSON file
-output_path_with_label = '2021C39.json'
+output_path_with_label = 'newdata1.jsonl'
 with open(output_path_with_label, 'w') as json_file:
     json.dump(all_data_with_label, json_file, indent=2)
 
