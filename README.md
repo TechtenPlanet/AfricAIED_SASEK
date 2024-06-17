@@ -1,8 +1,6 @@
 # NSMQ_GYM by SASEK LABS
 
 
-
-
 ## Installation and Setup
 
 1. **Clone the Repository:**
