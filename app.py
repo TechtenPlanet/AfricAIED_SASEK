@@ -25,7 +25,7 @@ class App:
             "blue"
         )  # Themes: "blue" (standard), "green", "dark-blue"
 
-        img = Image.open("./nsmq.png")
+        img = Image.open(".images/nsmq.png")
         img = CTkImage(light_image=Image.open("./nsmq.png"), size=(60, 50))
 
         self.nsmq_image = ctk.CTkLabel(
