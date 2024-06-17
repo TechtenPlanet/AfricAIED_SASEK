@@ -18,4 +18,4 @@ url = "http://127.0.0.1:8000/process"
 def send_chat_request(input_data):
     response = requests.post(url, json=input_data)
     result  = response.json()
-    return result
+    return result.ai_response
