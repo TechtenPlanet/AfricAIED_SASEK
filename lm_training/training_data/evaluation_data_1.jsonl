@@ -1,0 +1,35 @@
+[
+    {
+      "input": "Give an NSMQ question and its answer",
+      "output": "NSMQ Question: NSMQ Question: The valence configuration of $3 s^{2} 3 p_{x}{ }^{1} p_{y}{ }^{1} p_{z}{ }^{1}$ is more stable than $3 s^{2} 3 p_{x}{ }^{2} p_{y}{ }^{1}$.?\nAnswer: T"
+    },
+    {
+      "input": "Give an NSMQ question and its answer",
+      "output": "NSMQ Question: The valence configuration of $3 d^{10} 4 s^{1}$ is more stable than $3 d^{9} 4 s^{2}$.\nAnswer: Accra"
+    },
+    {
+      "input": "Give an NSMQ question and its answer",
+      "output": "NSMQ Question: Doubling the temperature of a given amount of a gas from $25^{\\circ} \\mathrm{C}$ to $50^{\\circ} \\mathrm{C}$ doubles its volume at a constant pressure.?\nAnswer: F. The temperatures have to be absolute temperature."
+    },
+    {
+      "input": "Give an NSMQ question and its answer",
+      "output": "NSMQ Question: $5.00 \\mathrm{~g}$ of Neon gas, atomic mass 20.0 will occupy the same volume as $4.40 \\mathrm{~g}$ of $\\mathrm{CO}_{2}$ at $100 \\mathrm{kPa}$ and $27^{\\circ} \\mathrm{C}$.?\nAnswer: $F$"
+    },
+    {
+      "input": "Give an NSMQ question and its answer",
+      "output": "NSMQ Question: The domain is the set of all real numbers.?\nAnswer: FALSE"
+    },
+    {
+      "input": "Give an NSMQ question and its answer",
+      "output": "NSMQ Question: $y=-2 x+7$\nAnswer:TRUE"
+    },
+    {
+      "input": "Give an NSMQ Riddle and its answer",
+      "output": "I am a comparatively modern technique, having become an effective technique in pest control only since about 1890 .\nHowever, there are antecedent historical events without which my discovery and conceptualization would have been much delayed.\nI am based on the knowledge of inharmonious (negative) ecological interactions between species\nI present the advantage of substituting the use of pesticides and other toxic chemical products in the control of plagues and diseases.\nHowever, I should be employed with caution and with serious prior study to avoid a harmful ecological disequilibrium\nI am the method of controlling pests such as insects, mites, weeds and plant diseases using other organisms\nWHO AM I?\nAnswer: Biological control"
+    },
+    {
+      "input": "Give an NSMQ Riddle and its answer",
+      "output": "NSMQ Riddle: I am a physical quantity.\nI am frequently encountered in the study of dynamics.\nI am a conserved quantity.\nI permeate the whole of the universe.\nI can be transformed into matter and matter can be transformed into me.\nWho am I?\nAnswer: Energy"
+    }
+  ]
+  

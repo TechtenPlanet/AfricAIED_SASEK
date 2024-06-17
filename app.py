@@ -195,6 +195,6 @@ class App:
 
 if __name__ == "__main__":
     root = ctk.CTk()
-    root.geometry("600x400")
+    root.geometry("900x700")
     app = App(root)
     root.mainloop()
