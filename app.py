@@ -7,7 +7,7 @@ from question_service import QuestionService
 from utils import synthesize_audio, autoplay_audio, make_recording, transcribe_audio
 
 question_service = QuestionService()
-BASE_URL = "https://6942-35-204-11-163.ngrok-free.app"
+BASE_URL = "https://9105-35-197-82-122.ngrok-free.app/"
 
 class App:
 
