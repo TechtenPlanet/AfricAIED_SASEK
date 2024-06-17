@@ -1,8 +1,3 @@
-import requests
-import json
-
-url = "http://127.0.0.1:8000/process"
-
 # input_data = {
 #     "messages": [
 #         {
@@ -15,7 +10,10 @@ url = "http://127.0.0.1:8000/process"
 #     ]
 # }
 
-def send_chat_request(input_data):
-    response = requests.post(url, json=input_data)
-    result  = response.json()
-    return result
+memory = []
+
+def update_meory(data):
+    memory.append(data)
+
+def get_memory():
+    return memory
