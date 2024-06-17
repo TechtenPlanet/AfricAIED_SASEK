@@ -2,12 +2,15 @@ import customtkinter as ctk
 import threading
 from queue import Queue
 import os
+from PIL import Image, ImageTk
+from customtkinter import CTkImage
 
 from question_service import QuestionService
 from utils import synthesize_audio, autoplay_audio, make_recording, transcribe_audio
 
 question_service = QuestionService()
-BASE_URL = "https://9105-35-197-82-122.ngrok-free.app/"
+BASE_URL = "https://fe7f-34-143-171-208.ngrok-free.app/"
+
 
 class App:
 
@@ -15,40 +18,78 @@ class App:
         self.root = root
         self.is_running = threading.Event()
         self.is_attempting = threading.Event()
-        
-        self.current_input = "" # Set current input
-        
-        self.top_frame = ctk.CTkFrame(master=self.root,bg_color="#eee",width=800,height=800)
-        self.top_frame.pack(padx=10,pady=40)
-        
+
+        self.current_input = ""  # Set current input
+        ctk.set_appearance_mode("light")
+        ctk.set_default_color_theme(
+            "blue"
+        )  # Themes: "blue" (standard), "green", "dark-blue"
+
+        img = Image.open("./nsmq.png")
+        img = CTkImage(light_image=Image.open("./nsmq.png"), size=(60, 50))
+
+        self.nsmq_image = ctk.CTkLabel(
+            master=root, text=None, image=img, justify="left", anchor="w", width=250
+        )
+        self.nsmq_image.pack(pady=50)
+
+        self.nsmq_image.place(x=23, y=26)
+
+        self.top_frame = ctk.CTkFrame(
+            master=self.root,
+            # fg_color="light_color",
+            width=800,
+            height=800,
+            corner_radius=25,
+        )
+
+        self.top_frame.pack(padx=10, pady=80)
+        self.top_frame.columnconfigure(0, weight=1)
+        self.top_frame.columnconfigure(1, weight=1)
+        self.top_frame.rowconfigure(0, weight=1)
+        self.top_frame.rowconfigure(1, weight=1)
+
+        self.sndFrame = ctk.CTkFrame(
+            self.top_frame,
+            height=280,
+            corner_radius=25,
+        )
+        self.sndFrame.pack()
+        self.sndFrame.place(x=0, y=0)
+
         self.riddle_label = ctk.CTkLabel(master=self.top_frame, text="Riddle: 0/0")
-        self.riddle_label.pack(padx=200,pady=30)
+        self.riddle_label.pack(padx=200, pady=30)
 
         self.score_label = ctk.CTkLabel(master=self.top_frame, text="Score: 0")
         self.score_label.pack(pady=30)
-        
-        self.user_input = ctk.CTkLabel(master=self.top_frame,text="Your input is: ")
+
+        self.user_input = ctk.CTkLabel(master=self.top_frame, text="Your input is: ")
         self.user_input.pack(pady=20)
-        
-        self.user_input_0 = ctk.CTkLabel(master=self.top_frame,text="")
+
+        self.user_input_0 = ctk.CTkLabel(master=self.top_frame, text="")
         self.user_input_0.pack(pady=5)
-        
-        self.start_button = ctk.CTkButton(master=root, text="Start Assessment", command=self.start_assessment)
+
+        self.start_button = ctk.CTkButton(
+            master=root, text="Start Assessment", command=self.start_assessment
+        )
         self.start_button.pack(pady=20)
 
-        self.answer_button = ctk.CTkButton(master=root, text="Make Attempt", command=self.make_attempt)
+        self.answer_button = ctk.CTkButton(
+            master=root, text="Make Attempt", command=self.make_attempt
+        )
         self.answer_button.pack(pady=20)
 
-        self.spinner_label = ctk.CTkLabel(master=self.top_frame, text="Assessment Ongoing...", text_color="green")
+        self.spinner_label = ctk.CTkLabel(
+            master=self.top_frame, text="Assessment Ongoing...", text_color="green"
+        )
         self.spinner_label.pack(pady=40)
         self.spinner_label.pack_forget()  # Hide the spinner initially
-        
 
-        self.processing_answer_label = ctk.CTkLabel(master=self.top_frame, text="", text_color="blue")
+        self.processing_answer_label = ctk.CTkLabel(
+            master=self.top_frame, text="", text_color="blue"
+        )
         self.processing_answer_label.pack(pady=20)
         self.processing_answer_label.pack_forget()
-
-
 
         self.worker_thread = None
         self.current_riddle_id = 1
@@ -61,7 +102,9 @@ class App:
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def update_labels(self):
-        self.riddle_label.configure(text=f"Riddle: {self.current_riddle_id}/{self.total_riddles}")
+        self.riddle_label.configure(
+            text=f"Riddle: {self.current_riddle_id}/{self.total_riddles}"
+        )
         self.score_label.configure(text=f"Score: {self.score}")
 
     def start_assessment(self):
@@ -86,7 +129,7 @@ class App:
 
         if self.current_riddle_id == 1:
             autoplay_audio(audio_path="cache/round_rules.wav")
-        
+
         autoplay_audio(audio_path=f"cache/riddle_{self.current_riddle_id}.wav")
         riddle = question_service.get_next_riddle(self.current_riddle_id)
         clues = riddle["clues"]
@@ -94,25 +137,30 @@ class App:
         self.is_running.set()  # Allow processing for the new riddle
 
         for clue_num, clue in enumerate(clues, start=1):
-            clue_audio_path = synthesize_audio(text=clue.strip().lower(), base_url=BASE_URL)
+            clue_audio_path = synthesize_audio(
+                text=clue.strip().lower(), base_url=BASE_URL
+            )
             print(f"Processing Clue {clue_num}")
             autoplay_audio(audio_path=clue_audio_path)
 
             # Prefetch the next clue's audio if it exists
-            #if clue_num < len(clues):
+            # if clue_num < len(clues):
             #    threading.Thread(target=self.synthesize_and_queue_audio, args=(clues[clue_num].strip(),)).start()
 
             # Check if the user wants to make an attempt
             if self.is_attempting.is_set():
-                self.remaining_clues = clues[clue_num+1:]
+                self.remaining_clues = clues[clue_num + 1 :]
                 self.handle_attempt(clue_num)
                 self.is_attempting.clear()
                 break
 
         self.is_running.clear()
-        if not self.is_attempting.is_set():  # If an attempt was not made, move to the next riddle
-            self.current_riddle_id += 1 if self.current_riddle_id < len(question_service) else 1
-        
+        if (
+            not self.is_attempting.is_set()
+        ):  # If an attempt was not made, move to the next riddle
+            self.current_riddle_id += (
+                1 if self.current_riddle_id < len(question_service) else 1
+            )
 
     def synthesize_and_queue_audio(self, text):
         clue_audio_path = synthesize_audio(text=text, base_url=BASE_URL)
@@ -123,31 +171,37 @@ class App:
             self.is_attempting.set()
 
     def handle_attempt(self, clue_num):
-        self.processing_answer_label.configure(text="Recording Answer. You have 5 seconds to provide your answer...")
+        self.processing_answer_label.configure(
+            text="Recording Answer. You have 5 seconds to provide your answer..."
+        )
         self.processing_answer_label.pack(pady=20)  # Show the processing label
-        
+
         answer_audio_path = make_recording()
         autoplay_audio(answer_audio_path)
-        
+
         self.processing_answer_label.configure(text="Processing Your Answer...")
         ## User Answer
         user_answer = transcribe_audio(audio_path=answer_audio_path, base_url=BASE_URL)
         self.user_input_0.configure(text=user_answer)
         self.current_input = user_answer
         print(user_answer)
-        
+
         riddle = question_service.get_next_riddle(self.current_riddle_id)
         groundtruths = riddle["answers"]
-        
+
         if self.check_answer(user_answer, groundtruths) == True:
             autoplay_audio(audio_path="./cache/correct.wav")
             if clue_num == 1:
                 self.score += 5
-                annon_audio_path = synthesize_audio(text="I was on the first clue, five points.", base_url=BASE_URL)
+                annon_audio_path = synthesize_audio(
+                    text="I was on the first clue, five points.", base_url=BASE_URL
+                )
                 autoplay_audio(annon_audio_path)
             elif clue_num == 2:
                 self.score += 4
-                annon_audio_path = synthesize_audio(text="I was on the second clue, four points.", base_url=BASE_URL)
+                annon_audio_path = synthesize_audio(
+                    text="I was on the second clue, four points.", base_url=BASE_URL
+                )
                 autoplay_audio(annon_audio_path)
             else:
                 self.score += 3
@@ -155,28 +209,38 @@ class App:
                     suffix = "rd"
                 else:
                     suffix = "th"
-                    annon_audio_path = synthesize_audio(text=f"I was on the {clue_num}{suffix} clue, three points.", base_url=BASE_URL)
+                    annon_audio_path = synthesize_audio(
+                        text=f"I was on the {clue_num}{suffix} clue, three points.",
+                        base_url=BASE_URL,
+                    )
                 autoplay_audio(annon_audio_path)
         else:
             autoplay_audio(audio_path="./cache/incorrect.wav")
 
             # Prompt the user that you will be reading the remaining clues
-            if len(self.remaining_clues) >=1:
-                prompt_audio_path = synthesize_audio(text="Now I continue with the clues.", base_url=BASE_URL)
+            if len(self.remaining_clues) >= 1:
+                prompt_audio_path = synthesize_audio(
+                    text="Now I continue with the clues.", base_url=BASE_URL
+                )
                 autoplay_audio(audio_path=prompt_audio_path)
 
                 for clue in self.remaining_clues:
                     clue_audio_path = synthesize_audio(text=clue, base_url=BASE_URL)
                     autoplay_audio(clue_audio_path)
-            
-            expected_answer_audio_path = synthesize_audio(f"The answer I was expecting is {groundtruths[0]}", base_url=BASE_URL)
+
+            expected_answer_audio_path = synthesize_audio(
+                f"The answer I was expecting is {groundtruths[0]}", base_url=BASE_URL
+            )
             autoplay_audio(expected_answer_audio_path)
 
         self.update_labels()
         self.processing_answer_label.pack_forget()  # Hide the processing label
 
     def check_answer(self, user_answer, groundtruths):
-        if any(user_answer.lower().strip().replace('.', '') == answer.lower().strip() for answer in groundtruths):
+        if any(
+            user_answer.lower().strip().replace(".", "") == answer.lower().strip()
+            for answer in groundtruths
+        ):
             return True
         return False
 

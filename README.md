@@ -1,13 +1,14 @@
-# Brilla-AI Riddle Prep Buddy - V2
+# NSMQ_GYM by SASEK LABS
 
-A small tkinter application students can use to practice for the riddles section of the NSMQ.
+
+
 
 ## Installation and Setup
 
 1. **Clone the Repository:**
 
     ```bash
-    git clone https://github.com/brill-ai/brill-ai.git
+    git clone https://github.com/TechtenPlanet/AfricAIED_SASEK
     cd your-repo-name
     ```
 
@@ -15,7 +16,7 @@ A small tkinter application students can use to practice for the riddles section
 
     First, cd into the project directory: 
     ```bash
-    cd riddle-prep-buddy-v2
+    cd AfricAIED_SASEK
     ```
 
     On macOS and Linux:
@@ -37,8 +38,6 @@ A small tkinter application students can use to practice for the riddles section
     ```
 
 ## Running the Application
-    
-### Before You Start
 
 
 1. Download the "AI Voice Models" folder onto your pc from [here](https://drive.google.com/drive/folders/1fr5uPj9NOVq8L2gws_DQCLvRRvmUhlY2)
@@ -56,8 +55,13 @@ A small tkinter application students can use to practice for the riddles section
     
 1. **Run the Server Notebook:**
 
-    1. In google colab, make sure you copy the path to the quizmistress.json and quizmistress.onnx files and 
-       replace these paths in the Riddle Prep App Server.ipynb file or else an error will be thrown
+    1. Upload the Server Notebook file to colab. Click on file and then click on upload notebook. Use any of 
+       the methods available to upload your notebook file.
+
+    2. 
+
+    1. In google colab, make sure you copy the path to the quizmistress.json and quizmistress.onnx files that you
+       uploaded to your google drive and replace these paths in the Riddle Prep App Server.ipynb file.
 
        ```
        # Load TTS model
