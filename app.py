@@ -35,19 +35,26 @@ class App:
 
         self.score_label = ctk.CTkLabel(master=root, text="Score: 0")
         self.score_label.pack(pady=10)
+        
+        self.other_teams_scores = ctk.CTkLabel(master=root, text="Team2: 0, Team3: 0")
+        self.other_teams_scores.pack(pady=5)
 
         self.worker_thread = None
-        self.current_riddle_id = 1
+        self.current_question = "None"
         self.total_riddles = len(question_service)
         self.score = 0
         self.audio_queue = Queue()
+        
+        # Current Question and answers
+        self.current_answer = []
+        self.current_question_object = {}
 
         self.remaining_clues = []
 
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def update_labels(self):
-        self.riddle_label.configure(text=f"Riddle: {self.current_riddle_id}/{self.total_riddles}")
+        self.riddle_label.configure(text=f"Question: {self.current_question}")
         self.score_label.configure(text=f"Score: {self.score}")
 
     def start_assessment(self):
@@ -64,25 +71,26 @@ class App:
             self.start_button.configure(text="Next Riddle")
 
     def assessment_simulation(self):
-        self.process_riddle()
+        self.process_questions()
         self.spinner_label.pack_forget()  # Hide the spinner after assessment is done
 
-    def process_riddle(self):
+    def process_questions(self):
         self.update_labels()
-
-        if self.current_riddle_id == 1:
-            autoplay_audio(audio_path="cache/round_rules.wav")
+    
+        # if self.current_riddle_id == 1:
+        #     autoplay_audio(audio_path="cache/round_rules.wav")
         
-        autoplay_audio(audio_path=f"cache/riddle_{self.current_riddle_id}.wav")
-        riddle = question_service.get_next_riddle(self.current_riddle_id)
-        clues = riddle["clues"]
-
+        #autoplay_audio(audio_path=f"cache/riddle_{self.current_riddle_id}.wav")
+        question = question_service.get_next_question(self.current_question)
+        self.current_question_object = question
+        
+        question_audio = synthesize_audio(question['question'])
         self.is_running.set()  # Allow processing for the new riddle
-
-        for clue_num, clue in enumerate(clues, start=1):
-            clue_audio_path = synthesize_audio(text=clue.strip().lower(), base_url=BASE_URL)
-            print(f"Processing Clue {clue_num}")
-            autoplay_audio(audio_path=clue_audio_path)
+    
+        while True:
+            # clue_audio_path = synthesize_audio(text=clue.strip().lower(), base_url=BASE_URL)
+            # print(f"Processing Clue {clue_num}")
+            autoplay_audio(audio_path=question_audio)
 
             # Prefetch the next clue's audio if it exists
             #if clue_num < len(clues):
@@ -90,8 +98,7 @@ class App:
 
             # Check if the user wants to make an attempt
             if self.is_attempting.is_set():
-                self.remaining_clues = clues[clue_num+1:]
-                self.handle_attempt(clue_num)
+                self.handle_attempt()
                 self.is_attempting.clear()
                 break
 
@@ -108,8 +115,8 @@ class App:
         if self.is_running.is_set():
             self.is_attempting.set()
 
-    def handle_attempt(self, clue_num):
-        self.processing_answer_label.configure(text="Recording Answer. You have 5 seconds to provide your answer...")
+    def handle_attempt(self):
+        self.processing_answer_label.configure(text=f"Recording Answer. You have {self.current_question["time"]} seconds to provide your answer...")
         self.processing_answer_label.pack(pady=20)  # Show the processing label
         
         answer_audio_path = make_recording()
@@ -117,28 +124,30 @@ class App:
         
         self.processing_answer_label.configure(text="Processing Your Answer...")
         user_answer = transcribe_audio(audio_path=answer_audio_path, base_url=BASE_URL)
+        # Update current user answer
+        self.current_answer = user_answer
         
-        riddle = question_service.get_next_riddle(self.current_riddle_id)
-        groundtruths = riddle["answers"]
+        self.current_question = question_service.get_next_question(self.current_answer)
         
-        if self.check_answer(user_answer, groundtruths) == True:
-            autoplay_audio(audio_path="./cache/correct.wav")
-            if clue_num == 1:
-                self.score += 5
-                annon_audio_path = synthesize_audio(text="I was on the first clue, five points.", base_url=BASE_URL)
-                autoplay_audio(annon_audio_path)
-            elif clue_num == 2:
-                self.score += 4
-                annon_audio_path = synthesize_audio(text="I was on the second clue, four points.", base_url=BASE_URL)
-                autoplay_audio(annon_audio_path)
-            else:
-                self.score += 3
-                if clue_num == 3:
-                    suffix = "rd"
-                else:
-                    suffix = "th"
-                    annon_audio_path = synthesize_audio(text=f"I was on the {clue_num}{suffix} clue, three points.", base_url=BASE_URL)
-                autoplay_audio(annon_audio_path)
+        if self.check_answer(user_answer) == True:
+            # autoplay_audio(audio_path="./cache/correct.wav")
+            # if clue_num == 1:
+            #     self.score += 5
+            #     annon_audio_path = synthesize_audio(text="I was on the first clue, five points.", base_url=BASE_URL)
+            #     autoplay_audio(annon_audio_path)
+            # elif clue_num == 2:
+            #     self.score += 4
+            #     annon_audio_path = synthesize_audio(text="I was on the second clue, four points.", base_url=BASE_URL)
+            #     autoplay_audio(annon_audio_path)
+            # else:
+            #     self.score += 3
+            #     if clue_num == 3:
+            #         suffix = "rd"
+            #     else:
+            #         suffix = "th"
+            #         annon_audio_path = synthesize_audio(text=f"I was on the {clue_num}{suffix} clue, three points.", base_url=BASE_URL)
+            #     autoplay_audio(annon_audio_path)
+            pass
         else:
             autoplay_audio(audio_path="./cache/incorrect.wav")
 
