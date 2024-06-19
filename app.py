@@ -81,8 +81,10 @@ class App:
         #     autoplay_audio(audio_path="cache/round_rules.wav")
         
         #autoplay_audio(audio_path=f"cache/riddle_{self.current_riddle_id}.wav")
-        question = question_service.get_next_question(self.current_question)
+        question = question_service.get_next_question(self.current_answer)
         self.current_question_object = question
+        self.current_answer.append(question)
+
         
         question_audio = synthesize_audio(question['question'])
         self.is_running.set()  # Allow processing for the new riddle
@@ -129,7 +131,7 @@ class App:
         
         self.current_question = question_service.get_next_question(self.current_answer)
         
-        if self.check_answer(user_answer) == True:
+        if self.current_question_object['quiz_mistress_remarks'] == 'That is Correct':
             # autoplay_audio(audio_path="./cache/correct.wav")
             # if clue_num == 1:
             #     self.score += 5
@@ -172,10 +174,7 @@ class App:
         return False
 
     def go_to_next_riddle(self):
-        self.current_riddle_id += 1
-        if self.current_riddle_id <= self.total_riddles:
-            self.start_assessment()  # Start the assessment for the next riddle
-        else:
+            self.start_assessment()  # Start the assessment for the next question
             self.start_button.configure(text="Start Assessment")
             self.current_riddle_id = 1
 
