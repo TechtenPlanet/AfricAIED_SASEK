@@ -16,6 +16,7 @@ def format_data_with_label(df):
 
 # Process all sheets and combine the data with the new label
 all_data_with_label = []
+
 for sheet in spreadsheet.sheet_names:
     sheet_data = pd.read_excel(file_path, sheet_name=sheet)
     formatted_sheet_data_with_label = format_data_with_label(sheet_data)

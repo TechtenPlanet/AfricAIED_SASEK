@@ -15,6 +15,37 @@ class App:
         self.root = root
         self.is_running = threading.Event()
         self.is_attempting = threading.Event()
+        
+        self.top_main = ctk.CTkLabel(master=root,width=1100,height=500,corner_radius=20,bg_color="#ddd")
+        self.top_main.pack(pady=20,padx=140)
+        
+        # Left Hud
+        self.top_sub = ctk.CTkLabel(master=self.top_main,width=50,height=50,corner_radius=20)
+        self.top_sub.grid(row=0, column=1, padx=0, pady=(0, 0),sticky="w")
+        
+        self.top_sub_label_1 = ctk.CTkLabel(master=self.top_sub,width=300,height=100,corner_radius=20)
+        self.top_sub_label_1.grid(row=0, column=0, padx=0, pady=(0, 0),sticky="w")
+        self.top_sub_label_1.configure(text="Stats")
+        
+        self.top_sub_label_2 = ctk.CTkLabel(master=self.top_sub,width=300,height=100,corner_radius=20,bg_color="#ddd")
+        self.top_sub_label_2.grid(row=1, column=0, padx=0, pady=(0, 0),sticky="w")
+        self.top_sub_label_2.configure(text="Total Rounds")
+
+        self.top_sub_label_3 = ctk.CTkLabel(master=self.top_sub,width=300,height=100,corner_radius=20,bg_color="#ddd")
+        self.top_sub_label_3.grid(row=2, column=0, padx=0, pady=(0, 0),sticky="w")
+        self.top_sub_label_3.configure(text="Score")
+        
+        self.top_sub_label_4 = ctk.CTkLabel(master=self.top_sub,width=300,height=100,corner_radius=20,bg_color="#ddd")
+        self.top_sub_label_4.grid(row=3, column=0, padx=0, pady=(0, 0),sticky="w")
+        self.top_sub_label_4.configure(text="Team1: 0 Team2: 0")
+        
+
+        # Right Hud
+        self.top_sub1 = ctk.CTkLabel(master=self.top_main,width=800,height=500,corner_radius=20,bg_color="#fff")
+        self.top_sub1.grid(row=0, column=2, padx=0, pady=(0, 0))
+        
+        
+
 
         self.start_button = ctk.CTkButton(master=root, text="Start Assessment", command=self.start_assessment)
         self.start_button.pack(pady=20)
@@ -22,26 +53,25 @@ class App:
         self.answer_button = ctk.CTkButton(master=root, text="Make Attempt", command=self.make_attempt)
         self.answer_button.pack(pady=20)
 
-        self.spinner_label = ctk.CTkLabel(master=root, text="Assessment Ongoing...", text_color="green")
-        self.spinner_label.pack(pady=20)
-        self.spinner_label.pack_forget()  # Hide the spinner initially
+        self.spinner_label = ctk.CTkLabel(master=self.top_sub1, text_color="green",width=200,height=40)
+        self.spinner_label.grid(row=4, column=2, padx=0, pady=(0, 0))
+        self.spinner_label.configure(text="Assessment Ongoing...")
+        self.spinner_label.grid_forget()  # Hide the spinner initially
 
-        self.processing_answer_label = ctk.CTkLabel(master=root, text="", text_color="blue")
-        self.processing_answer_label.pack(pady=20)
-        self.processing_answer_label.pack_forget()
+        self.processing_answer_label = ctk.CTkLabel(master=self.top_sub1,width=200,height=40, text_color="blue")
+        self.processing_answer_label.grid(row=0, column=0, padx=0, pady=(0, 0))
+        self.processing_answer_label.grid_forget()
 
-        self.riddle_label = ctk.CTkLabel(master=root, text="Riddle: 0/0")
-        self.riddle_label.pack(pady=10)
-
-        self.score_label = ctk.CTkLabel(master=root, text="Score: 0")
-        self.score_label.pack(pady=10)
+        self.riddle_label = ctk.CTkLabel(master=self.top_sub1,width=200,height=40)
+        self.riddle_label.grid(row=0, column=1, padx=0, pady=(0, 0))
+        self.riddle_label.configure(text="Round:")
         
-        self.other_teams_scores = ctk.CTkLabel(master=root, text="Team2: 0, Team3: 0")
-        self.other_teams_scores.pack(pady=5)
+        self.other_teams_scores = ctk.CTkLabel(master=self.top_sub1,width=200,height=40)
+        self.other_teams_scores.grid(row=3, column=2, padx=0, pady=(0, 0))
+        self.other_teams_scores.configure(text=f"Your input:")
 
         self.worker_thread = None
         self.current_question = "None"
-        self.total_riddles = len(question_service)
         self.score = 0
         self.audio_queue = Queue()
         
@@ -55,7 +85,7 @@ class App:
 
     def update_labels(self):
         self.riddle_label.configure(text=f"Question: {self.current_question}")
-        self.score_label.configure(text=f"Score: {self.score}")
+        self.top_sub_label_3.configure(text=f"Score: {self.score}")
 
     def start_assessment(self):
         if self.worker_thread and self.worker_thread.is_alive():
@@ -65,10 +95,7 @@ class App:
         self.spinner_label.pack(pady=20)  # Show the spinner
         self.worker_thread = threading.Thread(target=self.assessment_simulation)
         self.worker_thread.start()
-
-        # Change the text to "Next Riddle" after starting the first assessment
-        if self.current_riddle_id == 1:
-            self.start_button.configure(text="Next Riddle")
+        self.start_button.configure(text="Next Riddle")
 
     def assessment_simulation(self):
         self.process_questions()
@@ -106,8 +133,7 @@ class App:
 
         self.is_running.clear()
         if not self.is_attempting.is_set():  # If an attempt was not made, move to the next riddle
-            self.current_riddle_id += 1 if self.current_riddle_id < len(question_service) else 1
-        
+            self.go_to_next_question()
 
     def synthesize_and_queue_audio(self, text):
         clue_audio_path = synthesize_audio(text=text, base_url=BASE_URL)
@@ -118,8 +144,9 @@ class App:
             self.is_attempting.set()
 
     def handle_attempt(self):
-        self.processing_answer_label.configure(text=f"Recording Answer. You have {self.current_question["time"]} seconds to provide your answer...")
-        self.processing_answer_label.pack(pady=20)  # Show the processing label
+        if self.current_question["time"]:
+            self.processing_answer_label.configure(text=f"Recording Answer. You have 5 seconds to provide your answer...")
+            self.processing_answer_label.pack(pady=20)  # Show the processing label
         
         answer_audio_path = make_recording()
         autoplay_audio(answer_audio_path)
@@ -132,7 +159,7 @@ class App:
         self.current_question = question_service.get_next_question(self.current_answer)
         
         if self.current_question_object['quiz_mistress_remarks'] == 'That is Correct':
-            # autoplay_audio(audio_path="./cache/correct.wav")
+            autoplay_audio(audio_path="./cache/correct.wav")
             # if clue_num == 1:
             #     self.score += 5
             #     annon_audio_path = synthesize_audio(text="I was on the first clue, five points.", base_url=BASE_URL)
@@ -149,34 +176,15 @@ class App:
             #         suffix = "th"
             #         annon_audio_path = synthesize_audio(text=f"I was on the {clue_num}{suffix} clue, three points.", base_url=BASE_URL)
             #     autoplay_audio(annon_audio_path)
-            pass
         else:
             autoplay_audio(audio_path="./cache/incorrect.wav")
-
-            # Prompt the user that you will be reading the remaining clues
-            if len(self.remaining_clues) >=1:
-                prompt_audio_path = synthesize_audio(text="Now I continue with the clues.", base_url=BASE_URL)
-                autoplay_audio(audio_path=prompt_audio_path)
-
-                for clue in self.remaining_clues:
-                    clue_audio_path = synthesize_audio(text=clue, base_url=BASE_URL)
-                    autoplay_audio(clue_audio_path)
-            
-            expected_answer_audio_path = synthesize_audio(f"The answer I was expecting is {groundtruths[0]}", base_url=BASE_URL)
-            autoplay_audio(expected_answer_audio_path)
-
         self.update_labels()
         self.processing_answer_label.pack_forget()  # Hide the processing label
+        self.go_to_next_question()
 
-    def check_answer(self, user_answer, groundtruths):
-        if any(user_answer.lower().strip().replace('.', '') == answer.lower().strip() for answer in groundtruths):
-            return True
-        return False
-
-    def go_to_next_riddle(self):
+    def go_to_next_question(self):
             self.start_assessment()  # Start the assessment for the next question
             self.start_button.configure(text="Start Assessment")
-            self.current_riddle_id = 1
 
     def on_closing(self):
         self.root.destroy()
