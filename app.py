@@ -15,60 +15,58 @@ class App:
         self.root = root
         self.is_running = threading.Event()
         self.is_attempting = threading.Event()
-        
-        self.top_main = ctk.CTkLabel(master=root,width=1100,height=500,corner_radius=20,bg_color="#ddd")
-        self.top_main.pack(pady=20,padx=140)
+
+    
         
         # Left Hud
-        self.top_sub = ctk.CTkLabel(master=self.top_main,width=50,height=50,corner_radius=20)
-        self.top_sub.grid(row=0, column=1, padx=0, pady=(0, 0),sticky="w")
+        self.top_sub = ctk.CTkLabel(master=self.root,width=50,height=50,corner_radius=20,fg_color="#999")
+        self.top_sub.grid(row=0, column=0, padx=(150,0), pady=(50,40),sticky="ns")
         
-        self.top_sub_label_1 = ctk.CTkLabel(master=self.top_sub,width=300,height=100,corner_radius=20)
-        self.top_sub_label_1.grid(row=0, column=0, padx=0, pady=(0, 0),sticky="w")
+        self.top_sub_label_1 = ctk.CTkLabel(master=self.top_sub,width=300,height=80,corner_radius=0,fg_color="#ccc")
+        self.top_sub_label_1.grid(row=0, column=0, padx=0, pady=(0, 0),sticky="n")
         self.top_sub_label_1.configure(text="Stats")
         
-        self.top_sub_label_2 = ctk.CTkLabel(master=self.top_sub,width=300,height=100,corner_radius=20,bg_color="#ddd")
-        self.top_sub_label_2.grid(row=1, column=0, padx=0, pady=(0, 0),sticky="w")
+        self.top_sub_label_2 = ctk.CTkLabel(master=self.top_sub,width=300,height=120,corner_radius=0,fg_color="#ddd")
+        self.top_sub_label_2.grid(row=1, column=0, padx=0, pady=(0, 0))
         self.top_sub_label_2.configure(text="Total Rounds")
 
-        self.top_sub_label_3 = ctk.CTkLabel(master=self.top_sub,width=300,height=100,corner_radius=20,bg_color="#ddd")
-        self.top_sub_label_3.grid(row=2, column=0, padx=0, pady=(0, 0),sticky="w")
+        self.top_sub_label_3 = ctk.CTkLabel(master=self.top_sub,width=300,height=120,corner_radius=0,fg_color="#ddd")
+        self.top_sub_label_3.grid(row=2, column=0, padx=0, pady=(0, 0))
         self.top_sub_label_3.configure(text="Score")
         
-        self.top_sub_label_4 = ctk.CTkLabel(master=self.top_sub,width=300,height=100,corner_radius=20,bg_color="#ddd")
-        self.top_sub_label_4.grid(row=3, column=0, padx=0, pady=(0, 0),sticky="w")
+        self.top_sub_label_4 = ctk.CTkLabel(master=self.top_sub,width=300,height=120,corner_radius=0,fg_color="#ddd")
+        self.top_sub_label_4.grid(row=3, column=0, padx=0, pady=(0, 0))
         self.top_sub_label_4.configure(text="Team1: 0 Team2: 0")
         
 
         # Right Hud
-        self.top_sub1 = ctk.CTkLabel(master=self.top_main,width=800,height=500,corner_radius=20,bg_color="#fff")
-        self.top_sub1.grid(row=0, column=2, padx=0, pady=(0, 0))
+        self.top_sub1 = ctk.CTkLabel(master=self.root,width=800,height=400,corner_radius=20,fg_color="#fff")
+        self.top_sub1.grid(row=0, column=1, padx=(0,10), pady=(50,40),sticky="we")
         
-        
-
 
         self.start_button = ctk.CTkButton(master=root, text="Start Assessment", command=self.start_assessment)
-        self.start_button.pack(pady=20)
+        self.start_button.grid(row=3, column=1, padx=(0,300), pady=(0, 50))
 
         self.answer_button = ctk.CTkButton(master=root, text="Make Attempt", command=self.make_attempt)
-        self.answer_button.pack(pady=20)
+        self.answer_button.grid(row=4, column=1, padx=(0,300), pady=(0, 0))
 
-        self.spinner_label = ctk.CTkLabel(master=self.top_sub1, text_color="green",width=200,height=40)
-        self.spinner_label.grid(row=4, column=2, padx=0, pady=(0, 0))
+        self.spinner_label = ctk.CTkLabel(master=self.top_sub1, text_color="green",width=50,height=20,bg_color="#fff")
         self.spinner_label.configure(text="Assessment Ongoing...")
         self.spinner_label.grid_forget()  # Hide the spinner initially
 
-        self.processing_answer_label = ctk.CTkLabel(master=self.top_sub1,width=200,height=40, text_color="blue")
-        self.processing_answer_label.grid(row=0, column=0, padx=0, pady=(0, 0))
+        self.processing_answer_label = ctk.CTkLabel(master=self.top_sub1,width=50,height=20, text_color="blue",bg_color="#fff")
+        self.processing_answer_label.grid(row=3, column=0, padx=0, pady=(0, 0))
         self.processing_answer_label.grid_forget()
 
-        self.riddle_label = ctk.CTkLabel(master=self.top_sub1,width=200,height=40)
-        self.riddle_label.grid(row=0, column=1, padx=0, pady=(0, 0))
+        self.riddle_label = ctk.CTkLabel(master=self.top_sub1,width=200,height=40,bg_color="#fff")
+        self.riddle_label.grid(row=0, column=0, padx=(0,600), pady=(0, 0),sticky='n')
         self.riddle_label.configure(text="Round:")
         
-        self.other_teams_scores = ctk.CTkLabel(master=self.top_sub1,width=200,height=40)
-        self.other_teams_scores.grid(row=3, column=2, padx=0, pady=(0, 0))
+        self.other_teams_scores = ctk.CTkLabel(master=self.top_sub1,width=800,height=40,fg_color="#fff")
+        self.other_teams_scores.grid(row=1, column=0, padx=(0,0), pady=(0,0),sticky='n')
         self.other_teams_scores.configure(text=f"Your input:")
+        
+
 
         self.worker_thread = None
         self.current_question = "None"
@@ -92,14 +90,14 @@ class App:
             # Assessment is already running.
             return
 
-        self.spinner_label.pack(pady=20)  # Show the spinner
+        self.spinner_label.grid(row=0, column=0, padx=0, pady=(10,0),sticky="n")  # Show the spinner
         self.worker_thread = threading.Thread(target=self.assessment_simulation)
         self.worker_thread.start()
         self.start_button.configure(text="Next Riddle")
 
     def assessment_simulation(self):
         self.process_questions()
-        self.spinner_label.pack_forget()  # Hide the spinner after assessment is done
+        self.spinner_label.grid_forget()  # Hide the spinner after assessment is done
 
     def process_questions(self):
         self.update_labels()
@@ -193,6 +191,6 @@ class App:
 
 if __name__ == "__main__":
     root = ctk.CTk()
-    root.geometry("600x400")
+    root.geometry("1200x1000")
     app = App(root)
     root.mainloop()
