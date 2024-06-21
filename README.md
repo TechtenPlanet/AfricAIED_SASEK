@@ -73,7 +73,13 @@ An exe file will be released very soon
        clear_output()
        ```
     
-    3. Update the your hugging face access key in the Server Notebook
+    3. Update the your hugging face access key in the Server Notebook:
+    
+    ```
+    from huggingface_hub import login
+
+    login(token="your access token here")
+    ```
 
     Make sure to move quizmistress.pth into the content folder in google colab.
 
