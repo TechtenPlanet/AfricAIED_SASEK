@@ -22,11 +22,14 @@ jobs:
         run: pip install pyinstaller
 
       - name: Build Executable
-        run: pyinstaller --debug "app.py"
+        run: pyinstaller "app.py"
 
       - name: Zip Executable
         run: |
           7z a dist.zip dist
+          
+      - name: Install requirements
+        run: pip install -r requirements.txt
 
       - name: Upload Zip
         uses: actions/upload-artifact@v3
