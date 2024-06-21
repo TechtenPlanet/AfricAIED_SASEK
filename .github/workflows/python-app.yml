@@ -22,7 +22,7 @@ jobs:
         run: pip install pyinstaller
 
       - name: Build Executable
-        run: pyinstaller --paths "C:\Python311\Lib\site-packages" "app.py"
+        run: pyinstaller --debug "app.py"
 
       - name: Zip Executable
         run: |
