@@ -1,38 +1,35 @@
+name: Build and Upload Executable
 
-name: Build and uplaod executable
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-   build:
-    # Windows is currently the only platform this action supports
+  build:
     runs-on: windows-latest
 
     steps:
-
-      # Check-out repository
       - uses: actions/checkout@v4
 
-      # Setup Python
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-          architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+          python-version: '3.x'
+          architecture: 'x64' 
 
-      - name: Python GUI With TkInter
-        uses: Nuitka/Nuitka-Action@main
-        with:
-           nuitka-version: main
-           script-name: app.py
-           standalone: true
-           enable-plugins: tk-inter
+      - name: Install PyInstaller
+        run: pip install pyinstaller
 
-      # Uploads artifact
-      - name: Upload Artifact
+      - name: Build Executable
+        run: pyinstaller --paths "C:\Python311\Lib\site-packages" "app.py"
+
+      - name: Zip Executable
+        run: |
+          7z a dist.zip dist
+
+      - name: Upload Zip
         uses: actions/upload-artifact@v3
         with:
-          name: exe
-          path: build/app.exe
+          name: executable
+          path: dist.zip
